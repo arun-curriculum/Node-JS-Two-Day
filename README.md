@@ -1,6 +1,6 @@
 #Node JS Bootcamp
 
-###[Day 1](day_one.md)
+###[Day 1](day_one/)
 - What is Node and how does it work?
 - Writing a simple server with Node
 - Introduction to Express JS
