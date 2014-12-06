@@ -65,3 +65,23 @@ var server = app.listen(3000, function () {
 	console.log('Example app listening at http://%s:%s', host, port);
 });
 ```
+
+##Representational State Transfer (REST)
+- REST is a convention of routing that allows you to represent server-side actions in a URL.
+- HTTP requests occur in 4 main types:
+	- GET: Read
+	- POST: Create
+	- PUT: Update
+	- DELETE: Delete
+- Express uses RESTful routes to trigger actions on certain URL routes.
+- Parameters can also be passed into a URL:
+
+```
+app.get("/greet/:name/:lastname", function(req, res) {
+	res.send("Hello " + req.params.name + " " + req.params.lastname);
+});
+```
+
+##Practicing Routes with Express Routes
+- We will create a simple calculator that will perform math operations from numbers that will be passed in the URL.
+- Your program should have routes that will at least add, subtract, multiply, and divide.
