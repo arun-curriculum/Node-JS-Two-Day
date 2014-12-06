@@ -83,7 +83,7 @@ app.get("/greet/:name/:lastname", function(req, res) {
 });
 ```
 
-##Practicing Routes with Express Routes
+##Practicing Routes with an Express Calculator
 - We will create a simple calculator that will perform math operations from numbers that will be passed in the URL.
 - Your program should have routes that will at least add, subtract, multiply, and divide.
 
