@@ -139,6 +139,60 @@ views/index.ejs
 </div>
 ```
 
+##Making Calls to Web Services
+
+- On the client side we have AJAX, on the server side we have cURL.
+- Using Node.js we have to make requests with cURL.
+- You can install the [JSONView](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en) Chrome extension to easily look through JSON objects.
+
+####Request Module
+
+- Allows us to make HTTP requests easily using Node.
+
+```
+var request = require('request');
+
+request('http://www.google.com', function (error, response, body) {
+	if (!error && response.statusCode == 200) {
+		console.log(body); // Print the google web page.
+	}
+});
+```
+##Request Exercise
+
+- Create a new Node app using `npm init`.
+- Set up EJS as your templating engine.
+- Make a request out to facebook.com and place the response body inside a template. Hint: Think about which template syntax to use for this.
+
+##Using JSON
+
+- Normally if you use a real web service it will return data to you in JSON format.
+- Node however interprets this JSON as a string, so you need to parse it into real JSON.
+
+####JSON.parse()
+
+```
+request('http://www.google.com', function (error, response, body) {
+	if (!error && response.statusCode == 200) {
+		var data = JSON.parse(body);
+	}
+});
+```
+
+##JSON API Exercise
+
+For this exercise we will be using the User API:
+
+`http://daretodiscover.net/user`
+
+- Create a new application using `npm init`.
+- Use the request module to make a GET request to the above url.
+- Create 3 different routes using Express - first, last, all.
+	- First will display a list of all users' first names.
+	- Last will display a list of all users' last names.
+	- All will display a list of all users' data in table form.
+- Bonus: Make it pretty using Bootstrap :)
+
 ##Simple User Manager Lab
 - We will be building a user manager system using Node with PostgresSQL.
 - First we will have to build the front end of the application and set up our routes to handle the display and input of user information.
