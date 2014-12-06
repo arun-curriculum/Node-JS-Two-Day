@@ -172,7 +172,7 @@ request('http://www.google.com', function (error, response, body) {
 ####JSON.parse()
 
 ```
-request('http://www.google.com', function (error, response, body) {
+request('http://daretodiscover.net/user', function (error, response, body) {
 	if (!error && response.statusCode == 200) {
 		var data = JSON.parse(body);
 	}
