@@ -90,36 +90,53 @@ app.get("/greet/:name/:lastname", function(req, res) {
 ##Let's Talk About Templates
 - Templates allow you to create dynamic HTML views that are reused for various sets of data.
 - Embedded JavaScript (EJS) is the templating framework used with Node.
-- Let's rewrite the hello world application using templating:
+- Within EJS code you can write standard JS.
+- EJS looks for templates in the `views` folder.
+- EJS uses `<% %>`, `<%= %>`, and `<%- %>` blocks to display JS content.
+
+####<%= %>
+
+This notation is to be used when you want to "escape" HTML in the data returned. This will not allow HTML returned to be rendered as HTML.
+
+####<%- %>
+
+This notation will not escape the data returned, and will allow HTML to be rendered.
+
+####<% %>
+
+This notation is to be used when you don't want to print any resulting values to the view. A good example of this would be if you want to use a FOR loop in your template.
+
+####Example Hello World Using EJS
 
 app.js
 
 ```
-// add express
-var express = require('express'),
-	app = express();
+var express = require("express");
+var app = express();
 
-// set the view engine to ejs
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
+
+app.get('/', function(req, res) {
+	res.render("index.ejs", {
+		greeting: "Hello World"
+	});
+});
 
 app.listen(3000);
-
-// when the url is matched, say hello world
-app.get('/:name', function (req, res) {
-	res.render('index', { name: req.params.name });
-});
 ```
+
 views/index.ejs
 
 ```
-<!DOCTYPE html>
-<html>
-	<head>
-	</head>
-	<body>
-		<h1>Hello world, <%= name %>!</h1>
-	</body>
-</html>
+<h1>Testing out EJS</h1>
+
+<h2>Greeting is: <%= greeting %></h2>
+
+<div style="margin-top:50px;">
+	<% for (var i = 0; i < 5; i++) { %>
+		<h5>Repeated Text</h5>
+	<% } %>
+</div>
 ```
 
 ##Simple User Manager Lab
