@@ -106,7 +106,7 @@ app.listen(3000);
 
 // when the url is matched, say hello world
 app.get('/:name', function (req, res) {
-	response.render('index', { name: req.params.name });
+	res.render('index', { name: req.params.name });
 });
 ```
 views/index.ejs
