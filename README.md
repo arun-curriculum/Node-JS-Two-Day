@@ -8,3 +8,4 @@
 - REST refresher
 - Routing with Express
 - Templating with EJS
+- Web requests with the Request module
