@@ -193,9 +193,97 @@ For this exercise we will be using the User API:
 	- All will display a list of all users' data in table form.
 - Bonus: Make it pretty using Bootstrap :)
 
+##POST Operations
+
+- Instead of working with data that comes in to the server as a URL string, POST data is sent as an object through the request header.
+- POST requests are usually mapped over to create actions.
+- As a result, this data is hidden from user view.
+- This is often used for confidential, one-time data sending such as account credentials while setting up an account or sending credit card details securely.
+
+```
+var bodyParser = require("body-parser");
+
+app.use(bodyParser.urlencoded({
+	extended:true
+}));
+
+app.post("/user", function(req, res) {
+	request({
+		method: "POST",
+		uri: "http://daretodiscover.net/user",
+		formData: {
+			firstname: req.body.firstname,
+			lastname: req.body.lastname,
+			age: req.body.age,
+			username: req.body.username
+		}
+	}, function(error, response, body) {
+		res.redirect("/user");
+	});
+});
+```
+
+- Unlike GET requests, you can't access these parameters with `req.query`.
+- To access POST parameters you have to use the Node `body-parser` module, which takes the name attribute from the form data and uses it as POST data.
+- With this module you can simply use `req.body` as shown above.
+
+##PUT Operations
+
+- PUT is essentially the same as a POST request.
+- PUT requests are normally mapped over to update actions.
+- According to the convention, since PUT is mapped over to an update action, an ID needs to be passed to reference the data object.
+
+```
+var methodOverride = require("method-override");
+
+app.use(methodOverride("_method"));
+
+app.put("/user/:id", function(req, res) {
+	request({
+		method: "PUT",
+		uri: "http://daretodiscover.net/user/" + req.params.id,
+		formData: {
+			firstname: req.body.firstname,
+			lastname: req.body.lastname,
+			age: req.body.age,
+			username: req.body.username
+		}
+	}, function(error, response, body) {
+		res.redirect("/user");
+	});
+});
+```
+
+- Method override allows us to use the PUT verb in the HTML form, which is otherwise not supported.
+
+##DELETE Operations
+
+- Delete is the easiest of them all, but still requires a method override.
+- Delete will require an ID to specify which record is to be deleted.
+
+```
+app.delete("/user/:id", function(req, res) {
+	request({
+		method: "DELETE",
+		uri: "http://daretodiscover.net/user/" + req.params.id
+	}, function(error, response, body) {
+		res.redirect("/user");
+	});
+});
+```
+
 ##Simple User Manager Lab
 - We will be building a user manager system using Node with PostgresSQL.
 - First we will have to build the front end of the application and set up our routes to handle the display and input of user information.
 - Your task is to set up an application with three views - show all users, edit user, and add new user. Each of these views will be EJS templates.
 - Your application must have three separate GET routes to handle the display of each of these pages.
 - You will be building the functionality to perform the database operations tomorrow, but today we are just interested in being able to display the pages through Node using routes.
+
+##Homework / After Class
+
+- In this assignment we will create a wine inventory management system using a pre-built API: http://daretodiscover.net/wine
+- The app must use the following:
+	- Routes for GET, POST, PUT, DELETE.
+	- 3 views - show all wines, edit wine, new wine using EJS.
+	- All CRUD operations using the correct verbs.
+- Bonus: Make it pretty using Bootstrap
