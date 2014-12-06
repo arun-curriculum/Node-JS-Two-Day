@@ -3,6 +3,7 @@
 ##Installation
 - Install [Node JS](http://nodejs.org/)
 - Install [Nodemon](https://github.com/remy/nodemon)
+- Install [Postgres.app](http://postgresapp.com/)
 
 ##Group Exercise
 
@@ -85,3 +86,38 @@ app.get("/greet/:name/:lastname", function(req, res) {
 ##Practicing Routes with Express Routes
 - We will create a simple calculator that will perform math operations from numbers that will be passed in the URL.
 - Your program should have routes that will at least add, subtract, multiply, and divide.
+
+##Let's Talk About Templates
+- Templates allow you to create dynamic HTML views that are reused for various sets of data.
+- Embedded JavaScript (EJS) is the templating framework used with Node.
+- Let's rewrite the hello world application using templating:
+
+app.js
+
+```
+// add express
+var express = require('express'),
+	app = express();
+
+// set the view engine to ejs
+app.set('view engine', 'ejs');
+
+app.listen(3000);
+
+// when the url is matched, say hello world
+app.get('/:name', function (req, res) {
+	response.render('index', { name: req.params.name });
+});
+```
+views/index.ejs
+
+```
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+	<body>
+		<h1>Hello world, <%= name %>!</h1>
+	</body>
+</html>
+```
