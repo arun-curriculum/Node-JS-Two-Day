@@ -1,0 +1,19 @@
+{
+  "name": "user_manager_sequelize",
+  "version": "1.0.0",
+  "description": "User manager with Node and Sequelize",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arun Sood",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.10.0",
+    "ejs": "^1.0.0",
+    "express": "^4.10.4",
+    "pg": "^4.1.0",
+    "sequelize": "^2.0.0-rc3",
+    "sequelize-cli": "^0.3.3"
+  }
+}
