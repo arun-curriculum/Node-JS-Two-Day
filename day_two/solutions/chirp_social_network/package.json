@@ -1,0 +1,19 @@
+{
+  "name": "chirp_social_network",
+  "version": "1.0.0",
+  "description": "Chirp social network built with Node",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arun Sood",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.10.0",
+    "ejs": "^1.0.0",
+    "express": "^4.10.4",
+    "method-override": "^2.3.0",
+    "pg": "^4.1.0",
+    "sequelize": "^2.0.0-rc3"
+  }
+}
