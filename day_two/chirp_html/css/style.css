@@ -1,0 +1,58 @@
+@import url(http://fonts.googleapis.com/css?family=Sacramento);
+
+body {
+	background:url(../img/pattern.png);
+	padding-bottom:40px;
+}
+
+.logo {
+	font-family:"Sacramento", Arial;
+	font-size:4em;
+	font-weight:bold;
+	background-color:#FFF;
+	text-align:center;
+	padding:10px;
+}
+
+.margin-top-20 {
+	margin-top:20px;
+}
+
+.margin-top-10 {
+	margin-top:10px;
+}
+
+.margin-right-10 {
+	margin-right:10px;
+}
+
+.txt-right {
+	text-align:right;
+}
+
+.border-radius-10 {
+	border-radius:10px;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+}
+
+#chirp-wrapper {
+	background-color:#EBEBEB;
+	padding:20px;
+	display:none;
+}
+
+.one-chirp {
+	background-color:#FFF;
+	padding:20px;
+	font-size:1.7em;
+	margin-top:20px;
+}
+
+.one-chirp:first-child {
+	margin-top:0;
+}
+
+#instructions-modal .modal-body {
+	font-size:2em;
+}
