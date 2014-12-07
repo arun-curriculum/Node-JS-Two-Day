@@ -272,13 +272,6 @@ app.delete("/user/:id", function(req, res) {
 });
 ```
 
-##Simple User Manager Lab
-- We will be building a user manager system using Node with PostgresSQL.
-- First we will have to build the front end of the application and set up our routes to handle the display and input of user information.
-- Your task is to set up an application with three views - show all users, edit user, and add new user. Each of these views will be EJS templates.
-- Your application must have three separate GET routes to handle the display of each of these pages.
-- You will be building the functionality to perform the database operations tomorrow, but today we are just interested in being able to display the pages through Node using routes.
-
 ##Homework / After Class
 
 - In this assignment we will create a wine inventory management system using a pre-built API: http://daretodiscover.net/wine

@@ -1,5 +1,11 @@
 #Node JS Continued
 
+##Simple User Manager Warmup
+- We will be building a user manager system using Node with PostgresSQL.
+- First we will have to build the front end of the application and set up our routes to handle the display and input of user information.
+- Your task is to set up an application with three views - show all users, edit user, and add new user. Each of these views will be EJS templates.
+- Your application must have three separate GET routes to handle the display of each of these pages.
+
 ##Sequelize - Introduction to a Professional-Grade ORM
 
 ####ORM
@@ -54,7 +60,7 @@ Remember, if you want to make changes to your model after generating it - all yo
 Here is an example of a command to generate a User model with a first_name, last_name and age along with a corresponding migration. Make sure you do not have any spaces for each of the attributes and their data types
 
 ```
-sqlize model:create --name User --attributes first_name:string,last_name:string,age:integer
+sequelize model:create --name User --attributes first_name:string,last_name:string,age:integer
 ```
 
 ##CRUD with Sequelize
@@ -117,9 +123,10 @@ models.User.find(req.params.id).success(function(user) {
 });
 ```
 
-##User Manager Lab
-- Let's add a database component to our user manager system that we built.
-- The app should have one model `User` and should have the attributes firstname, lastname, age, and username.
+##Book Manager Lab
+- We will create a simple book manager system so we can practice our database operations with Sequelize.
+- You can use the front-end that has already been developed for you in the `book_library_html` folder.
+- The app should have one model `Book` and have 4 attributes - title, author, genre, pages.
 - All CRUD operations should be performed with Sequelize.
 
 ##Chirp! Lab - The Next Big Thang

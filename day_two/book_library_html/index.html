@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Book Library</title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+
+	<style>
+		.bold {
+			font-weight:bold;
+		}
+
+		.margin-top-20 {
+			margin-top:20px;
+		}
+	</style>
+</head>
+
+<body>
+
+<div class="container">
+	<h1>Book Manager</h1>
+
+	<div>
+		<a href="#" class="btn btn-primary" data-target="#add-book-modal" data-toggle="modal">Add Book</a>
+	</div>
+</div>
+
+<div class="container margin-top-20">
+	<table class="table striped">
+		<thead>
+			<th>Title</th>
+			<th>Author</th>
+			<th>Genre</th>
+			<th>Pages</th>
+			<th>Action</th>
+		</thead>
+
+		<tbody>
+			<tr>
+				<td>
+					Journey to the Center of the World
+				</td>
+				<td>
+					Arun Sood
+				</td>
+				<td>
+					Romance Fiction
+				</td>
+				<td>
+					325
+				</td>
+				<td>
+					<a href="#" class="btn btn-primary">Edit</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="add-book-modal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title">Add a Book</h4>
+			</div>
+			<div class="modal-body">
+				<div class="bold">
+					Title
+				</div>
+				<div class="margin-top-20">
+					<input name="title" type="text" class="form-control" placeholder="Title" />
+				</div>
+				<div class="bold margin-top-20">
+					Author
+				</div>
+				<div class="margin-top-20">
+					<input name="author" type="text" class="form-control" placeholder="Author" />
+				</div>
+				<div class="bold margin-top-20">
+					Genre
+				</div>
+				<div class="margin-top-20">
+					<input name="genre" type="text" class="form-control" placeholder="Genre" />
+				</div>
+				<div class="bold margin-top-20">
+					Pages
+				</div>
+				<div class="margin-top-20">
+					<input name="pages" type="text" class="form-control" placeholder="Pages" />
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary">Save Book</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--jQuery-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
