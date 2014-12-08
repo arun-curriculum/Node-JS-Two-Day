@@ -172,7 +172,7 @@ request('http://www.google.com', function (error, response, body) {
 ####JSON.parse()
 
 ```
-request('http://daretodiscover.net/user', function (error, response, body) {
+request('http://daretodiscover.net/users', function (error, response, body) {
 	if (!error && response.statusCode == 200) {
 		var data = JSON.parse(body);
 	}
@@ -183,7 +183,7 @@ request('http://daretodiscover.net/user', function (error, response, body) {
 
 For this exercise we will be using the User API:
 
-`http://daretodiscover.net/user`
+`http://daretodiscover.net/users`
 
 - Create a new application using `npm init`.
 - Use the request module to make a GET request to the above url.
@@ -210,7 +210,7 @@ app.use(bodyParser.urlencoded({
 app.post("/user", function(req, res) {
 	request({
 		method: "POST",
-		uri: "http://daretodiscover.net/user",
+		uri: "http://daretodiscover.net/users",
 		formData: {
 			firstname: req.body.firstname,
 			lastname: req.body.lastname,
@@ -241,7 +241,7 @@ app.use(methodOverride("_method"));
 app.put("/user/:id", function(req, res) {
 	request({
 		method: "PUT",
-		uri: "http://daretodiscover.net/user/" + req.params.id,
+		uri: "http://daretodiscover.net/users/" + req.params.id,
 		formData: {
 			firstname: req.body.firstname,
 			lastname: req.body.lastname,
@@ -265,7 +265,7 @@ app.put("/user/:id", function(req, res) {
 app.delete("/user/:id", function(req, res) {
 	request({
 		method: "DELETE",
-		uri: "http://daretodiscover.net/user/" + req.params.id
+		uri: "http://daretodiscover.net/users/" + req.params.id
 	}, function(error, response, body) {
 		res.redirect("/user");
 	});
@@ -274,7 +274,7 @@ app.delete("/user/:id", function(req, res) {
 
 ##Homework / After Class
 
-- In this assignment we will create a wine inventory management system using a pre-built API: http://daretodiscover.net/wine
+- In this assignment we will create a wine inventory management system using a pre-built API: http://daretodiscover.net/wines
 - The app must use the following:
 	- Routes for GET, POST, PUT, DELETE.
 	- 3 views - show all wines, edit wine, new wine using EJS.
