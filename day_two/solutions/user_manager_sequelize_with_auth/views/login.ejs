@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>User Manager Login</title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+
+	<style>
+		.bold {
+			font-weight:bold;
+		}
+
+		.margin-top-20 {
+			margin-top:20px;
+		}
+
+		.small-container {
+			width:700px;
+			margin-left:auto;
+			margin-right:auto;
+		}
+	</style>
+</head>
+
+<body>
+
+<div class="small-container margin-top-20">
+	<h1>Login Here</h1>
+	<form method="post" action="/login">
+		<div class="bold">
+			Username
+		</div>
+		<div class="margin-top-20">
+			<input type="text" class="form-control" name="username" placeholder="Username" />
+		</div>
+		<div class="bold margin-top-20">
+			Password
+		</div>
+		<div class="margin-top-20">
+			<input type="password" class="form-control" name="password" placeholder="Password" />
+		</div>
+		<div class="margin-top-20">
+			<button type="submit">Login</button>
+		</div>
+	</form>
+</div>
+
+<!--jQuery-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
