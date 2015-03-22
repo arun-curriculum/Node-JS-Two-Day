@@ -1,0 +1,87 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', '--save', 'ej' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.36
+4 warn package.json user_manager@1.0.0 No description
+5 warn package.json user_manager@1.0.0 No repository field.
+6 warn package.json user_manager@1.0.0 No README data
+7 verbose readDependencies using package.json deps
+8 verbose cache add [ 'ej', null ]
+9 verbose cache add name=undefined spec="ej" args=["ej",null]
+10 verbose parsed url { protocol: null,
+10 verbose parsed url   slashes: null,
+10 verbose parsed url   auth: null,
+10 verbose parsed url   host: null,
+10 verbose parsed url   port: null,
+10 verbose parsed url   hostname: null,
+10 verbose parsed url   hash: null,
+10 verbose parsed url   search: null,
+10 verbose parsed url   query: null,
+10 verbose parsed url   pathname: 'ej',
+10 verbose parsed url   path: 'ej',
+10 verbose parsed url   href: 'ej' }
+11 silly lockFile ee9800e8-ej ej
+12 verbose lock ej /Users/arsood/.npm/ee9800e8-ej.lock
+13 silly lockFile ee9800e8-ej ej
+14 silly lockFile ee9800e8-ej ej
+15 verbose addNamed [ 'ej', '' ]
+16 verbose addNamed [ null, '*' ]
+17 silly lockFile 88e2f1aa-ej ej@
+18 verbose lock ej@ /Users/arsood/.npm/88e2f1aa-ej.lock
+19 silly addNameRange { name: 'ej', range: '*', hasData: false }
+20 verbose request where is /ej
+21 verbose request registry https://registry.npmjs.org/
+22 verbose request id 063d37a6b601e6ed
+23 verbose url raw /ej
+24 verbose url resolving [ 'https://registry.npmjs.org/', './ej' ]
+25 verbose url resolved https://registry.npmjs.org/ej
+26 verbose request where is https://registry.npmjs.org/ej
+27 info trying registry request attempt 1 at 14:40:44
+28 http GET https://registry.npmjs.org/ej
+29 http 404 https://registry.npmjs.org/ej
+30 verbose headers { date: 'Sat, 21 Mar 2015 21:40:45 GMT',
+30 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+30 verbose headers   'content-type': 'application/json',
+30 verbose headers   'cache-control': 'max-age=0',
+30 verbose headers   'content-length': '51',
+30 verbose headers   'accept-ranges': 'bytes',
+30 verbose headers   via: '1.1 varnish',
+30 verbose headers   age: '0',
+30 verbose headers   'x-served-by': 'cache-lax1422-LAX',
+30 verbose headers   'x-cache': 'MISS',
+30 verbose headers   'x-cache-hits': '0',
+30 verbose headers   'x-timer': 'S1426974044.967129,VS0,VE46',
+30 verbose headers   'keep-alive': 'timeout=10, max=50',
+30 verbose headers   connection: 'Keep-Alive' }
+31 silly registry.get cb [ 404,
+31 silly registry.get   { date: 'Sat, 21 Mar 2015 21:40:45 GMT',
+31 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+31 silly registry.get     'content-type': 'application/json',
+31 silly registry.get     'cache-control': 'max-age=0',
+31 silly registry.get     'content-length': '51',
+31 silly registry.get     'accept-ranges': 'bytes',
+31 silly registry.get     via: '1.1 varnish',
+31 silly registry.get     age: '0',
+31 silly registry.get     'x-served-by': 'cache-lax1422-LAX',
+31 silly registry.get     'x-cache': 'MISS',
+31 silly registry.get     'x-cache-hits': '0',
+31 silly registry.get     'x-timer': 'S1426974044.967129,VS0,VE46',
+31 silly registry.get     'keep-alive': 'timeout=10, max=50',
+31 silly registry.get     connection: 'Keep-Alive' } ]
+32 silly lockFile 88e2f1aa-ej ej@
+33 silly lockFile 88e2f1aa-ej ej@
+34 error 404 404 Not Found: ej
+34 error 404
+34 error 404 'ej' is not in the npm registry.
+34 error 404 You should bug the author to publish it
+34 error 404 It was specified as a dependency of 'user_manager'
+34 error 404
+34 error 404 Note that you can also install from a
+34 error 404 tarball, folder, or http url, or git url.
+35 error System Darwin 14.1.0
+36 error command "node" "/usr/local/bin/npm" "install" "--save" "ej"
+37 error cwd /Users/arsood/Desktop/user_manager
+38 error node -v v0.10.36
+39 error npm -v 1.4.28
+40 error code E404
+41 verbose exit [ 1, true ]

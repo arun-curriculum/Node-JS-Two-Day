@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>First Names</title>
+</head>
+<body>
+
+<% for (var i = 0; i < users.length; i++) { %>
+	<p>
+	First Name: <%= users[i].firstname %><br />
+	Last Name: <%= users[i].lastname %><br />
+	Age: <%= users[i].age %><br />
+	Username: <%= users[i].username %><br />
+	<a href="/users/<%= users[i].id %>/edit">Edit User</a>
+	</p>
+<% } %>
+
+</body>
+</html>

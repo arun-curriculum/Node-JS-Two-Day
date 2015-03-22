@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User Manager</title>
+</head>
+<body>
+
+<% for (var i = 0; i < users.length; i++) { %>
+	<p>
+		First Name: <%= users[i].firstname %><br />
+		Age: <%= users[i].age %>
+	</p>
+<% } %>
+
+<% users.forEach(function(user) { %>
+	<p>
+		First Name: <%= user.firstname %><br />
+		Age: <%= user.age %>
+	</p>
+<% }); %>
+
+</body>
+</html>
