@@ -213,7 +213,7 @@ socket.on('event', function(params) { });
 socket.emit('event', params);
 ```
 
-##Build the Chat Lab
+##In-Class Lab: Build the Chat
 - In this lab we will be coding along and working together to create a real-time chat application.
 - The front end is already done for you [here](chat_starter_app/).
 - Here are the steps you will need to take:

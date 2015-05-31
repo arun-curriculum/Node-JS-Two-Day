@@ -16,5 +16,5 @@
 - CRUD with the Postgres database
 - Building a simple user manager system with Postgres and Sequelize
 - Build a small Twitter clone called Chirp!
-- Introduction to authentication with Passport
-- Implement an authentication strategy for the Chirp! application
+- Web sockets with Socket.io
+- Deploying your app to Heroku
