@@ -123,12 +123,6 @@ models.User.find(req.params.id).success(function(user) {
 });
 ```
 
-##Book Manager Lab
-- We will create a simple book manager system so we can practice our database operations with Sequelize.
-- You can use the front-end that has already been developed for you in the `book_library_html` folder.
-- The app should have one model `Book` and have 4 attributes - title, author, genre, pages.
-- All CRUD operations should be performed with Sequelize.
-
 ##Chirp! Lab - The Next Big Thang
 Chirp! is the newest social network that brings together all of the coolest aspects of socializing. Your mission should you choose to accept it is as follows:
 - Use the files in the `chirp_html` folder as your frontend.
@@ -143,185 +137,130 @@ app.use(express.static(__dirname + '/public'));
 ```
 All static assets will now be served out of the public directory.
 
-##What Is Authentication?
+##Introduction to Web Sockets
+- One of the most powerful uses for Node is its ability to handle seamless "real-time" experiences.
+- Sockets are a way for a browser and server to communicate without the standard request-response cycle.
+- Chat clients, real-time data feeds, and operational dashboards are some examples of where sockets have been used effectively.
 
-####Ability to store and retrieve user credentials
+##How it Basically Works
+- A client makes an initial request out to the server and a "handshake" is created - AKA a connection has been established.
+- This "handshake" is given a unique socket with a unique ID.
+- Essentially this request never completes and remains open for the duration of the session.
+- Every further request-response simulation is done via a manifestation of a JavaScript event.
+- In a perfect world this is how things would always operate with sockets but certain factors such as browser incompatibility and more can interfere with a proper handshake. As a result, a more brute-force approach of "polling" may be required.
 
-Firstly, an authentication scheme allows your users to be able to save information about themselves into the app like username, password, name, birthday, etc.
+##Socket.io
+- Socket.io is a library that essentially manages browser capabilities to connect a client with a server through web sockets in the most ideal way possible.
+- It can switch between polling and sockets automatically and basically automate the handshake process.
+- Socket.io works on the client and the server side to achieve seamless interaction.
 
-####Way to keep parts of your app reserved for logged-in users
+##Socket-Based Chat Mechanism
+- We will be building a chat application in Node using web sockets.
+- We will use Express JS as the application framework.
 
-In most applications you want to separate common areas from private areas, such as a user's profile page or dashboard. Logging in users properly requires an authentication scheme.
-
-##How is Authentication Performed?
-
-In industry-standard applications, authentication is performed through a standard set of processes:
-
-1. User registers for site providing username, password, etc.
-2. Password is encrypted using a salted hash system like Bcrypt and saved into the database.
-3. User visits login page and enters credentials (username, password, etc).
-4. Password entered is checked against the password hash in the database.
-5. Session cookie is set allowing user details to persist across pages and browser closes.
-
-##Where Does Passport Come In?
-
-- Sessions are not built in to Node, so Passport replicates this key feature.
-- Passport appends methods and model information into the `req` object in Express to allow us to manage sessions.
-- Passport operates mainly in the "middleware" to accomplish its tasks, so between request and response.
-- Passport can handle standard authentication, but also assist heavily with OATH, which is the most common way to authenticate using an external API.
-
-##Password Encryption Via Bcrypt
-
-We first need to require our modules:
+####The Server Setup
+- For this project we will need to import the Express and Socket.io modules into the project:
 
 ```
-var bcrypt = require("bcrypt");
-var salt = bcrypt.genSaltSync(10);
+var express = require('express');
+var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 ```
 
-We need to then create a method to encrypt our password using the Blowfish algorithm:
+- To handle the initial handshake, Socket.io registers a `connection` event:
 
 ```
-hashPass: function(password) {
-	return bcrypt.hashSync(password, salt);
-}
+io.on('connection', function(socket) { });
 ```
 
-And then we can write a function to compare a given password with the hash in the database:
+- This is now a unique socket for this specific connection.
+- Any events to this socket can easily be detected and dealt with:
 
 ```
-comparePass: function(userpass, dbpass) {
-	return bcrypt.compareSync(userpass, dbpass);
-}
+socket.on('event', function(params) { });
 ```
 
-This password can then be saved in the database along with the new model information (such as a new user):
+- Any event can also be "emitted" from the socket if necessary:
 
 ```
-createNewUser: function(userInfo) {
-	User.create({
-   		first_name:userInfo.first_name,
-      	last_name:userInfo.last_name,
-       username:userInfo.username,
-       password:this.hashPass(userInfo.password)
-   });
-}
+io.emit('event', params);
 ```
 
-Read more on the Blowfish algorithm [here](http://en.wikipedia.org/wiki/Blowfish_(cipher)).
-
-##Setting Up Passport
-
-This is absolutely non-intuitive, and requires mostly memorization.
-
-We first need to import our new modules:
+- You can also emit events to all sockets connected except for yours by using `broadcast`:
 
 ```
-var passport = require("passport"),
-    localStrategy = require("passport-local").Strategy,
-    flash = require('connect-flash'),
-    session = require("cookie-session");
+socket.broadcast.emit('event', params);
 ```
 
-Setup Passport to use appropriate middleware:
+####The Client Setup
+- The client will also use Socket.io to handle the handshake and any further events.
+- The first thing that will be needed is to create the handshake with the server:
 
 ```
-app.use(session( {
-  secret: 'thisismysecretkey',
-  name: 'chocolate chip',
-  maxage: 3600000
-  })
-);
-
-app.use(passport.initialize());
-app.use(passport.session());
+var socket = io.connect("server_url or blank for current server");
 ```
 
-Passport uses "serialize" functions that allow the module to create session objects from the validated information:
+- The client can also detect and respond to events:
 
 ```
-passport.serializeUser(function(user, done) {
-	done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done){
-	models.User.find({
-		where: {
-			id: id
-		}
-	}).done(function(error,user){
-		done(error, user);
-	});
-});
+socket.on('event', function(params) { });
 ```
 
-##Apply Passport for User Authentication
-
-In your post route for your user authentication form, you can use Passport like so:
+- The client can also "emit" events:
 
 ```
-app.post("/login", passport.authenticate("local", {
-	successRedirect: "/",
-	failureRedirect: "/login"
-}));
+socket.emit('event', params);
 ```
 
-This local "strategy" can be found in the User model:
+##Build the Chat Lab
+- In this lab we will be coding along and working together to create a real-time chat application.
+- The front end is already done for you [here](chat_starter_app/).
+- Here are the steps you will need to take:
+	- Step 1: Set up the app as a new node app with `npm init`.
+	- Step 2: Set up the app to serve your static assets and make sure everything is in the right folder.
+	- Step 3: Set up your root route to show the chat front end.
+	- Step 4: Write the chat server functionality and integrate it with the front end code.
+	- **Bonus:** Use your knowledge of front end JavaScript to change the page title when a new chat is received.
+
+##Pushing Your Node App to Heroku
+- Heroku is a great platform for testing out your app.
+- It helps you do push-button deployments for your apps so you don't have to think of server administration.
+- Let's check out the [documentation](https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up) to see how we can get started with Node on Heroku.
+- Here are the basic steps:
+
+#####Download and install the Heroku toolbelt
+- This is the command line utility to work with Heroku from the terminal.
+
+#####Login to Heroku locally
 
 ```
-passport.use(new localStrategy({
-    usernameField: 'username',
-    passwordField: 'password'
-  }, function(username, password, done) {
-      User.find({
-        where: {
-          username: username
-        }
-      }).done(function(error, user) {
-        if (user) {
-          if (User.comparePass(password, user.password)) {
-            done(null, user);
-          } else {
-            done(null, null);
-          }
-        } else {
-          done(null, null);
-        }
-      });
-    }
-  ));
+heroku login
 ```
 
-If authentication succeeds, the `done()` method will be called, and the user is now serialized into the `user` object.
-
-##What Does All This Mean?!
-
-- User sessions now persist across pages and browser refreshes.
-- User data can be used throughout the site.
-- Content can be hidden or shown based on user authentication state.
-
-app.js
+#####Set up project as new Heroku app
+- This will give your project a temporary name as it is deployed.
 
 ```
-app.get("/", function(req, res) {
-	res.render("index.ejs", {
-		isAuthenticated: req.isAuthenticated(),
-		user: req.user
-	});
-});
-```
-index.ejs
-
-
-```
-<% if (isAuthenticated) { %>
-	<h1>You are logged in!</h1>
-<% } %>
+heroku create
 ```
 
-##Lab / Homework
+- Here's how to rename the app if you want to:
 
-- Take the Chirp! application you created and add an authentication layer.
-- Users should be able to register for an account.
-- Passwords must be hashed with Bcrypt.
-- Chirp edit page should only be visible if the user is logged in.
+```
+heroku apps:rename newname
+```
+
+#####Create a file called `Procfile`
+- This is a file to tell the server which process to run as it starts the app.
+
+```
+web: node app.js
+```
+
+#####Push the app to Heroku
+- The dependencies will automatically be installed and the app server will be started.
+
+```
+git push heroku master
+```
