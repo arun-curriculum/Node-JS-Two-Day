@@ -67,7 +67,7 @@ sequelize model:create --name User --attributes first_name:string,last_name:stri
 
 ####Create
 
-```
+```javascript
 var pg = require("pg");
 var models = require("./models/index.js");
 
@@ -75,15 +75,15 @@ models.User.create({
 	first_name:req.body.firstname,
 	last_name:req.body.lastname,
 	age:req.body.age
-}).success(function(data) {
+}).done(function(data, error) {
 	res.redirect("/");
 });
 ```
 
 ####Read
 
-```
-models.User.findAll().success(function(users) {
+```javascript
+models.User.findAll().done(function(users, error) {
 	res.render("index.ejs", {
 		all_users: users
 	});
@@ -91,8 +91,8 @@ models.User.findAll().success(function(users) {
 ```
 or
 
-```
-models.User.find(req.params.id).success(function(user) {
+```javascript
+models.User.findById(req.params.id).done(function(user, error) {
 	res.render("edit.ejs", {
 		user_info: user
 	});
@@ -101,13 +101,13 @@ models.User.find(req.params.id).success(function(user) {
 
 ####Update
 
-```
-models.User.find(req.params.id).success(function(user) {
+```javascript
+models.User.findById(req.params.id).done(function(user, error) {
 	user.updateAttributes({
 		first_name:req.body.firstname,
 		last_name:req.body.lastname,
 		age:req.body.age
-	}).success(function() {
+	}).done(function() {
 		res.redirect("/");
 	});
 });
@@ -115,9 +115,9 @@ models.User.find(req.params.id).success(function(user) {
 
 ####Delete
 
-```
-models.User.find(req.params.id).success(function(user) {
-	user.destroy().success(function() {
+```javascript
+models.User.findById(req.params.id).done(function(user, error) {
+	user.destroy().done(function() {
 		res.redirect("/");
 	});
 });
@@ -132,7 +132,7 @@ Chirp! is the newest social network that brings together all of the coolest aspe
 
 One issue you will have right away is being able to serve static assets through your Node application. This can be easily achieved with Express:
 
-```
+```javascript
 app.use(express.static(__dirname + '/public'));
 ```
 All static assets will now be served out of the public directory.
@@ -161,7 +161,7 @@ All static assets will now be served out of the public directory.
 ####The Server Setup
 - For this project we will need to import the Express and Socket.io modules into the project:
 
-```
+```javascript
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
@@ -170,32 +170,32 @@ var io = require('socket.io')(http);
 
 - You will need to use this new variable `http` for our listen method:
 
-```
+```javascript
 http.listen(3000);
 ```
 
 - To handle the initial handshake, Socket.io registers a `connection` event:
 
-```
+```javascript
 io.on('connection', function(socket) { });
 ```
 
 - This is now a unique socket for this specific connection.
 - Any events to this socket can easily be detected and dealt with:
 
-```
+```javascript
 socket.on('event', function(params) { });
 ```
 
 - Any event can also be "emitted" from the socket if necessary:
 
-```
+```javascript
 io.emit('event', params);
 ```
 
 - You can also emit events to all sockets connected except for yours by using `broadcast`:
 
-```
+```javascript
 socket.broadcast.emit('event', params);
 ```
 
@@ -203,19 +203,19 @@ socket.broadcast.emit('event', params);
 - The client will also use Socket.io to handle the handshake and any further events.
 - The first thing that will be needed is to create the handshake with the server:
 
-```
+```javascript
 var socket = io.connect("server_url or blank for current server");
 ```
 
 - The client can also detect and respond to events:
 
-```
+```javascript
 socket.on('event', function(params) { });
 ```
 
 - The client can also "emit" events:
 
-```
+```javascript
 socket.emit('event', params);
 ```
 
@@ -238,7 +238,7 @@ socket.emit('event', params);
 #####Change the port as required by Heroku
 - Heroku docs indicate that you will need these lines instead of the standard 3000.
 
-```
+```javascript
 var port = process.env.PORT || 3000;
 
 app.listen(port);
