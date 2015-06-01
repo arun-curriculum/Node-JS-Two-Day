@@ -168,6 +168,12 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 ```
 
+- You will need to use this new variable `http` for our listen method:
+
+```
+http.listen(3000);
+```
+
 - To handle the initial handshake, Socket.io registers a `connection` event:
 
 ```
@@ -228,6 +234,15 @@ socket.emit('event', params);
 - It helps you do push-button deployments for your apps so you don't have to think of server administration.
 - Let's check out the [documentation](https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up) to see how we can get started with Node on Heroku.
 - Here are the basic steps:
+
+#####Change the port as required by Heroku
+- Heroku docs indicate that you will need these lines instead of the standard 3000.
+
+```
+var port = process.env.PORT || 3000;
+
+app.listen(port);
+```
 
 #####Download and install the Heroku toolbelt
 - This is the command line utility to work with Heroku from the terminal.
